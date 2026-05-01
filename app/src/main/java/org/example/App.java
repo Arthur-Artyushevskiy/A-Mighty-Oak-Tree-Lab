@@ -3,12 +3,30 @@
  */
 package org.example;
 
+import java.security.Security;
+
 public class App {
     public String getGreeting() {
         return "Hello World!";
     }
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        Squirrel<String> cheeks = new Squirrel<>("Cheeks");
+        Node<String> nodeOne = new Node<>(cheeks);
+
+        Squirrel<String> squeaks = new Squirrel<>("Squeaks");
+        Node<String> nodeTwo = new Node<>(squeaks);
+
+        Squirrel<String> fluffybutt = new Squirrel<>("Mr. Fluffy Butt");
+        Node<String> nodeThree = new Node<>(fluffybutt);
+
+        nodeOne.setLeft(nodeTwo);
+        nodeOne.setRight(nodeThree);
+
+        Node<String> retrievedLeft = nodeOne.left(); // This should retrieve the left node
+        Node<String> retrievedRight = nodeOne.right(); // This should retrieve the right node
+
+        System.out.println(retrievedLeft.getData().getName());
+        System.out.println(retrievedRight.getData().getName());
     }
 }
